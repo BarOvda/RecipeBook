@@ -1,0 +1,32 @@
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Home</a>
+          </li>
+          <li class="nav-item" *ngIf="emailName() !== ''">
+            <a class="nav-link" routerLink="/My-Recipe">My Recipes</a>
+          </li>
+          <li class="nav-item" *ngIf="emailName() !== ''">
+            <a class="nav-link" routerLink="/addRecipe">Add A Recpie</a>
+          </li>
+          <li class="nav-item" *ngIf="emailName() !== ''">
+            <a class="nav-link" routerLink="/updateDetails">Update</a>
+          </li>
+          <ul class="nav navbar-nav navbar-right" *ngIf="emailName() === '';else elseBlock">
+            <li routerLinkActive="active"><a routerLink="/register">Sign-Up</a></li>
+            <li routerLinkActive="active"><a routerLink="/Log-in">Log-In</a></li>
+          </ul>
+          <ng-template #elseBlock>
+            <ul class="nav navbar-nav navbar-right">
+              <li>HI, {{headerEmail}} </li>
+
+            </ul>
+          </ng-template>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>

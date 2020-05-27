@@ -1,0 +1,70 @@
+<body>
+
+  <form (ngSubmit)="onSubmitinfro()" style="border:1px solid #ccc">
+    <div class="container">
+      <h1>CREATE RECIPE</h1>
+      <p>Please fill </p>
+      <hr>
+
+      <label for="name"><b>Recipe title...</b></label>
+      <input type="text" placeholder="Enter name" [(ngModel)]="this.name" name="name" required>
+
+      <label for="image"><b>Put Image URL</b></label>
+      <input type="text" placeholder="Enter url" [(ngModel)]="image" name="image" required>
+
+      <div class="clearfix">
+
+        <button type="submit" class="signupbtn">Submit</button>
+      </div>
+    </div>
+  </form>
+</body>
+
+<body>
+  <hr>
+  <form (ngSubmit)="onSubmitAddIngredient()" style="border:1px solid #ccc">
+    <div class="container">
+      <p>Please fill Ingredient to you'r {{name}} RECIPE: </p>
+      <hr>
+
+      <label for="Ingredient"><b>Ingredient number {{inCount}}:</b></label>
+      <input type="text" placeholder="Enter one Ingredient" onfocus="ingridientName = ''" [(ngModel)]="ingridientName"
+        name="Ingredient" required>
+
+      <label for="amount"><b>Quantity:</b></label>
+      <input type="text" placeholder="Enter quantity" [(ngModel)]="ingridientAmount" name="amount" required>
+
+      <div class="clearfix">
+
+        <button type="submit" class="signupbtn">Add Ingredient</button>
+      </div>
+    </div>
+  </form>
+</body>
+<hr>
+
+<body>
+  <form (ngSubmit)="onSubmitAddAttribute()" style="border:1px solid #ccc">
+    <div class="container">
+      <p>Please fill step's to you'r {{name}} RECIPE: </p>
+      <hr>
+      <label for="Attribute"><b>Step number {{count}}:</b></label>
+      <input type="text" placeholder="Enter one step" onfocus="step = ''" [(ngModel)]="step" name="Attribute" required>
+
+      <div class="clearfix">
+        <button type="submit" class="signupbtn">Add step </button>
+      </div>
+    </div>
+  </form>
+</body>
+<hr>
+
+<body>
+  <form (ngSubmit)="onSubmitFinish()" style="border:1px solid #ccc">
+    <div class="container">
+      <p>Please press FINISH if you write all detiles about you'r {{name}} RECIPE: </p>
+      <button type="submit" class="signupbtn">FINISH</button>
+    </div>
+  </form>
+</body>
+<hr>

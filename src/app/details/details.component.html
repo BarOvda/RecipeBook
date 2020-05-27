@@ -1,0 +1,25 @@
+<body>
+
+  <form (ngSubmit)="onSubmitChange()" action="/action_page.php" style="border:1px solid #ccc">
+    <div class="container">
+      <h1>Update</h1>
+      <p>Please fill if yoou want update someting.</p>
+      <hr>
+
+      <label for="role"><b>Role:</b></label>
+      <input type="text" placeholder="Enter Role" [(ngModel)]="user.role" name="role">
+      <p></p>
+      <label for="username"><b>Username:</b></label>
+      <input type="text" placeholder="Enter Username" [(ngModel)]="user.username" name="username">
+      <p></p>
+      <label for="avatar"><b>Avatar:</b></label>
+      <input type="text" placeholder="Repeat Avatar" [(ngModel)]="user.avatar" name="avatar">
+
+      <div class="clearfix">
+
+        <button type="submit" class="signupbtn">Update</button>
+      </div>
+    </div>
+  </form>
+
+</body>
