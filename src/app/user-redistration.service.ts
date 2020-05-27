@@ -1,7 +1,9 @@
+import { Action } from './action';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './user';
 import { HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +32,8 @@ export class UserRedistrationService {
     return this.http.put<User>('http://localhost:8091/acs/users/' + this.emailName, user);
   }
 
+  public searchUser(action: Action) {
+    return this.http.put<User>('http://localhost:8091/acs/actions' ,action);
+  }
 
 }
