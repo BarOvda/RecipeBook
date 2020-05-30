@@ -32,8 +32,9 @@ export class UserRedistrationService {
     return this.http.put<User>('http://localhost:8091/acs/users/' + this.emailName, user);
   }
 
-  public searchUser(action: Action) {
-    return this.http.put<User>('http://localhost:8091/acs/actions' ,action);
+  public searchUser(action: Action):Promise<any> {
+    console.log(action.invokedBy["email"]);
+    return this.http.post<Action>('http://localhost:8091/acs/actions' ,action).toPromise();
   }
 
 }

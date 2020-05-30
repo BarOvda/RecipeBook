@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { UserRedistrationService } from '../user-redistration.service';
 
@@ -9,8 +10,8 @@ import { UserRedistrationService } from '../user-redistration.service';
 export class HeaderComponent implements OnInit {
 
   headerEmail: string;
-
-  constructor(private service: UserRedistrationService) { }
+  usernameSearch:string;
+  constructor(private service: UserRedistrationService,private router:Router) { }
 
   ngOnInit(): void {
     this.headerEmail = '';
@@ -19,5 +20,8 @@ export class HeaderComponent implements OnInit {
   emailName() {
     return this.headerEmail = this.service.emailName;
   }
+  onSearchUser(){
+    this.router.navigate(['/search-page/'+this.usernameSearch]);
 
+  }
 }

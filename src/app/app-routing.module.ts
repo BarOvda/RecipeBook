@@ -1,3 +1,4 @@
+import { SearchUsersComponent } from './search-users/search-users.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { RegistrationComponent } from './registration/registration.component';
@@ -11,6 +12,7 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 const routes: Routes = [
     { path: "register", component: RegistrationComponent },
     { path: "Log-in", component: LogInComponent },
+    { path: "search-page/:username", component: SearchUsersComponent },
     { path: "updateDetails", component: DetailsComponent },
     { path: "addRecipe", component: AddRecipeComponent },
     {

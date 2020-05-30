@@ -16,7 +16,7 @@
             <a class="nav-link" routerLink="/updateDetails">Update</a>
           </li>
           <li *ngIf="emailName() !== ''"> <form (ngSubmit)="onSearchUser()">
-            <input type="text" name="search" placeholder="Search..">
+            <input type="text" [(ngModel)]="this.usernameSearch" name="search" placeholder="Search..">
           </form></li>
           <ul class="nav navbar-nav navbar-right" *ngIf="emailName() === '';else elseBlock">
             <li routerLinkActive="active"><a routerLink="/register">Sign-Up</a></li>
