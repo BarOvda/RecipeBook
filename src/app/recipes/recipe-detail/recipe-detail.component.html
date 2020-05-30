@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <img [src]="recipe.elementAttributes['image']" alt="{{recipe.name}}" class="img-responsive"
+    <img [src]="this.recipe.elementAttributes['image']" alt="{{this.recipe.name}}" class="img-responsive"
       style="max-height: 300px;">
   </div>
 </div>
@@ -9,18 +9,22 @@
     <h1>{{ recipe.name }}</h1>
   </div>
 </div>
+<hr>
 <div class="row">
-  <div class="col-xs-12">
-    <div class="btn-group" appDropdown>
-
-
-
-    </div>
+  <div class="col-xs-7 col-sm-6 col-lg-8">
+    <h3>Ingredients</h3>
+    <p *ngFor="let ing of this.ingridient">
+      {{ing}}
+    </p>
   </div>
 </div>
+<hr>
 <div class="row">
-  <div class="col-xs-12">
-    {{ recipe.name}}
+  <div class="col-xs-7 col-sm-6 col-lg-8">
+    <h3>Directions</h3>
+    <p *ngFor="let step of this.steps">
+      {{step}}
+    </p>
   </div>
 </div>
 <!--<div class="row">

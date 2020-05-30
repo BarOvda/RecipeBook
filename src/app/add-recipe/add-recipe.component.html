@@ -36,7 +36,7 @@
 
       <div class="clearfix">
 
-        <button type="submit" class="signupbtn">Add Ingredient</button>
+        <button type="submit" [disabled]="!press" class="signupbtn">Add Ingredient</button>
       </div>
     </div>
   </form>
@@ -52,7 +52,7 @@
       <input type="text" placeholder="Enter one step" onfocus="step = ''" [(ngModel)]="step" name="Attribute" required>
 
       <div class="clearfix">
-        <button type="submit" class="signupbtn">Add step </button>
+        <button type="submit" [disabled]="!press" class="signupbtn">Add step </button>
       </div>
     </div>
   </form>
@@ -63,7 +63,7 @@
   <form (ngSubmit)="onSubmitFinish()" style="border:1px solid #ccc">
     <div class="container">
       <p>Please press FINISH if you write all detiles about you'r {{name}} RECIPE: </p>
-      <button type="submit" class="signupbtn">FINISH</button>
+      <button type="submit" [disabled]="!press" class="signupbtn">FINISH</button>
     </div>
   </form>
 </body>

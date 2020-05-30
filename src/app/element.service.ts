@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Element } from './element'
+import { Action } from './action';
 
 
 @Injectable({
@@ -20,8 +21,8 @@ export class ElementService {
     return this.http.get<Element>("http://localhost:8091/acs/elements/" + email + "/search/byName/" + name).toPromise();
   }
 
-  public getAllElementByEmail(email: string): Promise<any> {
-    return this.http.get("http://localhost:8091/acs/elements/" + email).toPromise();
+  public getElementByType(email: string, type: string): Promise<any> {
+    return this.http.get<Element>("http://localhost:8091/acs/elements/" + email + "/search/byType/" + type).toPromise();
   }
 
   public conectBetweenElement(email: string, id: string, childId: any): Promise<any> {
@@ -36,5 +37,30 @@ export class ElementService {
     return this.http.get("http://localhost:8091/acs/elements/" + email + "/" + id).toPromise();
   }
 
+  public getIngridient(email: string, id: string): Promise<any> {
+    return this.http.get("http://localhost:8091/acs/elements/" + email + "/" + id + "/children").toPromise();
+  }
 
+  public getRecipeByEmail(action: Action): Promise<any> {
+    return this.http.post<Action>("http://localhost:8091/acs/actions", action).toPromise();
+  }
+
+
+  public createUserElement(userElement: Element, email: string) {
+    this.postElement(userElement, email).then(() => {
+      this.getElementByType(email, userElement.type).then((data: Element) => {
+        this.element = data[0];
+      })
+    })
+  }
+  public specificUser(email: string, name: string) {
+    this.getElementByName(email, name).then((data: Element) => {
+      this.element = data[0];
+      console.log(this.element);
+    })
+
+  }
 }
+
+
+

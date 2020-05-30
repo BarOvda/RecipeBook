@@ -17,7 +17,7 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.check(this.service.emailName)
-      .subscribe((data: User) => this.user = { ...data });
+      .then((data: User) => this.user = { ...data });
   }
 
   onSubmitChange() {
@@ -27,7 +27,7 @@ export class DetailsComponent implements OnInit {
   }
 
   gotoUserList() {
-    this.router.navigate(['']);
+    this.router.navigate(['/feed']);
   }
 
 

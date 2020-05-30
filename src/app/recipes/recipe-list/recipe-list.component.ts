@@ -3,6 +3,7 @@ import { Element } from '../../element'
 import { ElementService } from 'src/app/element.service';
 import { UserRedistrationService } from 'src/app/user-redistration.service';
 import { Router } from '@angular/router';
+import { Action } from '../../action';
 
 
 @Component({
@@ -13,26 +14,39 @@ import { Router } from '@angular/router';
 export class RecipeListComponent implements OnInit {
   recipes: Element[] = [];
   element: Element;
+  page: number = 0;
+  pages: number[] = [];
+
   constructor(private elementService: ElementService, private userService: UserRedistrationService, private router: Router) { }
+  setPage(i: number, event: Event) {
+
+    event.preventDefault();
+    this.page = i;
+    this.getRecipeByEmail();
+
+  }
 
   ngOnInit(): void {
-    this.element = new Element();
-    this.getAllRecipeByEmail();
+    this.getRecipeByEmail();
   }
 
-  getAllRecipeByEmail() {
-    this.elementService.getAllElementByEmail(this.userService.emailName)
-      .then(data => {
-        data.forEach((element: Element) => {
-          this.checkElement(element);
-        })
-      })
-  }
 
-  checkElement(element: Element) {
-    if (element.type === 'recipe' && element.createdBy['email'] === this.userService.emailName) {
-      this.recipes.push(element);
-    }
-  }
+  getRecipeByEmail() {
+    var action: Action = new Action();
+    this.recipes = [];
+    this.pages = [];
 
+    action.type = "getAllUsersRecpies";
+    action.invokedBy["email"] = this.userService.emailName;
+    action.actionAttributes["page"] = this.page;
+    action.element["elementId"] = this.elementService.element.elementId;
+
+    this.elementService.getRecipeByEmail(action).then((data) => {
+      this.recipes = data;
+
+      for (let i = 0; i < (parseInt(("" + (this.recipes.length / 10 + 1)))); i++) {
+        this.pages.push(i);
+      }
+    })
+  }
 }

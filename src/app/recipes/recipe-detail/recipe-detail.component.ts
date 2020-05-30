@@ -12,7 +12,9 @@ import { Element } from '../../element';
 export class RecipeDetailComponent implements OnInit {
   recipe: Element;
   id: number;
+  count: number;
 
+  ingridient: string[] = [];
   steps: string[] = [];
 
 
@@ -25,6 +27,10 @@ export class RecipeDetailComponent implements OnInit {
         (params: Params) => {
           this.id = +params['id'];
 
+          this.steps = [];
+          this.ingridient = [];
+          this.count = 1;
+
           this.elementService.getSpecificElement(this.userService.emailName, "" + this.id)
             .then((data) => {
               this.recipe = data;
@@ -35,10 +41,23 @@ export class RecipeDetailComponent implements OnInit {
                 this.steps.push(step);
               }
             }).then(() => {
+              this.steps = this.steps.slice(0, this.steps.length - 1);
+            }).then(() => {
+              var elementIngridient: Element;
+              var ingridientToArray: string;
+              this.elementService.getIngridient(this.userService.emailName, this.recipe.elementId)
+                .then((data) => {
+                  data.forEach(element => {
+                    elementIngridient = element;
+                    ingridientToArray = this.count + ": " + elementIngridient.name + "    "
+                      + elementIngridient.elementAttributes[this.recipe.elementId];
 
+                    this.ingridient.push(ingridientToArray);
+                    this.count++;
+                  });
+                })
             })
         }
       )
   }
-
 }

@@ -1,7 +1,7 @@
-import { Action } from './action';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './user';
+import { Action } from './action'
 import { HttpHeaders } from '@angular/common/http';
 
 
@@ -18,23 +18,23 @@ export class UserRedistrationService {
 
   constructor(private http: HttpClient) { }
 
-  public save(user: User) {
+  public save(user: User): Promise<any> {
     this.emailName = user.email;
-    return this.http.post<User>("http://localhost:8091/acs/users", user);
+    return this.http.post<User>("http://localhost:8091/acs/users", user).toPromise();
   }
 
-  public check(email: string) {
+  public check(email: string): Promise<any> {
     this.emailName = email;
-    return this.http.get<User>("http://localhost:8091/acs/users/login/" + email)
+    return this.http.get<User>("http://localhost:8091/acs/users/login/" + email).toPromise();
   }
 
   public changeDetails(user: User) {
     return this.http.put<User>('http://localhost:8091/acs/users/' + this.emailName, user);
   }
 
-  public searchUser(action: Action):Promise<any> {
-    console.log(action.invokedBy["email"]);
-    return this.http.post<Action>('http://localhost:8091/acs/actions' ,action).toPromise();
+  public searchUser(action: Action): Promise<any> {
+    return this.http.post<Action>('http://localhost:8091/acs/action', action).toPromise();
   }
+
 
 }

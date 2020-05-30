@@ -1,8 +1,10 @@
-import { ActivatedRoute } from '@angular/router';
-import { Action } from './../action';
-import { UserRedistrationService } from 'src/app/user-redistration.service';
-import { User } from './../user';
 import { Component, OnInit } from '@angular/core';
+import { User } from '../user';
+import { Action } from '../action';
+import { UserRedistrationService } from '../user-redistration.service';
+import { ActivatedRoute } from '@angular/router';
+import { ElementService } from '../element.service';
+import { Element } from '../element';
 
 @Component({
   selector: 'app-search-users',
@@ -10,30 +12,46 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-users.component.css']
 })
 export class SearchUsersComponent implements OnInit {
-  searchResult : User[] = [];
+  searchResult: User[] = [];
+  element: Element;
+  page: number = 0;
+  pages: number[] = [];
 
-  action :Action;
-  pageIndex:Number;
-  constructor(private service: UserRedistrationService,private router:ActivatedRoute) { }
+  constructor(private userService: UserRedistrationService, private router: ActivatedRoute, private elementService: ElementService) { }
 
-  ngOnInit(): void {
-    this.pageIndex = 0;
-    this.action = new Action();
-    this.action.actionAttributes["username"] = this.router.snapshot.params['username'];
+  setPage(i: number, event: Event) {
 
-    this.action.type="searchUser";
-    this.action.invokedBy["email"] = this.service.emailName; 
-    console.log(this.service.emailName);
-    console.log(this.action.invokedBy["email"]);
-    console.log(this.action.actionAttributes["username"]);
-    this.service.searchUser(this.action).then(data=>
-      {
-        data.forEach((user: User) => {
-          this.searchResult.push(user);  
-                
-        })
-         });
-      
+    event.preventDefault();
+    this.page = i;
+    this.getUsersByUsername();
   }
 
+
+  ngOnInit(): void {
+    this.getUsersByUsername();
+  }
+
+  getUsersByUsername() {
+    var action: Action = new Action();
+
+    this.searchResult = [];
+    this.pages = [];
+
+    action.type = "searchUser";
+    action.invokedBy["email"] = this.userService.emailName;
+    action.actionAttributes["page"] = this.page;
+    action.actionAttributes["username"] = this.router.snapshot.params['username'];
+    action.element["elementId"] = this.elementService.element.elementId;
+
+
+    this.userService.searchUser(action).then((data) => {
+      this.searchResult = data;
+
+      for (let i = 0; i < (parseInt(("" + (this.searchResult.length / 10 + 1)))); i++) {
+        this.pages.push(i);
+      }
+
+      console.log(this.pages);
+    })
+  }
 }

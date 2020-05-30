@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/">Home</a>
+            <a class="nav-link" routerLink="/feed">Home</a>
           </li>
           <li class="nav-item" *ngIf="emailName() !== ''">
             <a class="nav-link" routerLink="/My-Recipe">My Recipes</a>
@@ -15,9 +15,11 @@
           <li class="nav-item" *ngIf="emailName() !== ''">
             <a class="nav-link" routerLink="/updateDetails">Update</a>
           </li>
-          <li *ngIf="emailName() !== ''"> <form (ngSubmit)="onSearchUser()">
-            <input type="text" [(ngModel)]="this.usernameSearch" name="search" placeholder="Search..">
-          </form></li>
+          <li *ngIf="emailName() !== ''">
+            <form (ngSubmit)="onSearchUser()">
+              <input type="text" [(ngModel)]="this.usernameSearch" name="search" placeholder="Search..">
+            </form>
+          </li>
           <ul class="nav navbar-nav navbar-right" *ngIf="emailName() === '';else elseBlock">
             <li routerLinkActive="active"><a routerLink="/register">Sign-Up</a></li>
             <li routerLinkActive="active"><a routerLink="/Log-in">Log-In</a></li>
@@ -25,7 +27,6 @@
           <ng-template #elseBlock>
             <ul class="nav navbar-nav navbar-right">
               <li>HI, {{headerEmail}} </li>
-
             </ul>
           </ng-template>
         </ul>

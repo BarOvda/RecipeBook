@@ -49,10 +49,12 @@ export class AddRecipeComponent implements OnInit {
     this.element = new Element();
     this.recipeElement = new Element();
     this.ingridientElement = new Element();
+    this.attributeingridient.clear();
   }
 
   onSubmitinfro() {
     this.attributeRecipe.set("image", this.image);
+    this.press = 1;
 
   }
 
@@ -133,15 +135,14 @@ export class AddRecipeComponent implements OnInit {
             this.element = JSON.parse(JSON.stringify(data));
           }).then(() => {
             this.connectBetweenElement(this.element[0].elementId);
-          })
-          .then(() => {
+          }).then(() => {
             this.exit();
           })
       })
   }
 
   findIngridientByName(name: string, amount: string) {
-
+    var ID = this.element[0].elementId
     this.attributeingridient.clear();
 
     for (var value in this.element[0].elementAttributes) {
@@ -154,26 +155,22 @@ export class AddRecipeComponent implements OnInit {
       this.element[0].elementAttributes[key] = value;
     })
 
-    this.elementService.update(this.userservice.emailName, this.element[0].elementId, this.element[0]).
-      then(data => {
-        this.connectBetweenElement(this.element[0].elementId);
+    this.elementService.update(this.userservice.emailName, ID, this.element[0]).
+      then(() => {
+        this.connectBetweenElement(ID);
       }).then(() => {
         this.exit();
       })
   }
 
   connectBetweenElement(elementId: string) {
-
+    console.log(elementId);
+    this.childId = {};
     this.childId["id"] = elementId;
-
-    this.elementService.conectBetweenElement(this.userservice.emailName, this.recipeElement[0].elementId, this.childId)
-      .then(() => {
-        console.log()
-      });
+    this.elementService.conectBetweenElement(this.userservice.emailName, this.recipeElement[0].elementId, this.childId);
   }
 
   exit() {
-
     if (this.countToExit == this.elementNumber) {
       this.router.navigate(['']);
 
