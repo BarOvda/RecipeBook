@@ -23,6 +23,9 @@ export class UserRedistrationService {
     return this.http.post<User>("http://localhost:8091/acs/users", user).toPromise();
   }
 
+  public getUsersDetails(email: string): Promise<any> {
+    return this.http.get<User>("http://localhost:8091/acs/users/login/" + email).toPromise();
+  }
   public check(email: string): Promise<any> {
     this.emailName = email;
     return this.http.get<User>("http://localhost:8091/acs/users/login/" + email).toPromise();
@@ -33,8 +36,16 @@ export class UserRedistrationService {
   }
 
   public searchUser(action: Action): Promise<any> {
-    return this.http.post<Action>('http://localhost:8091/acs/action', action).toPromise();
+    return this.http.post<Action>('http://localhost:8091/acs/actions', action).toPromise();
   }
-
+  
+  public follow(action: Action): Promise<any> {
+    return this.http.post<Action>('http://localhost:8091/acs/actions', action).toPromise();
+  }
+  public getFeed(action: Action): Promise<any> {
+    return this.http.post<Action>('http://localhost:8091/acs/actions', action).toPromise();
+  }
+  
+  
 
 }

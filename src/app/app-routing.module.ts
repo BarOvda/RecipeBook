@@ -13,7 +13,7 @@ import { SearchUsersComponent } from './search-users/search-users.component';
 const routes: Routes = [
     { path: "register", component: RegistrationComponent },
     { path: "Log-in", component: LogInComponent },
-    { path: "search-page/:username", component: SearchUsersComponent },
+    { path: "search-page", component: SearchUsersComponent },
     { path: "updateDetails", component: DetailsComponent },
     { path: "addRecipe", component: AddRecipeComponent },
     {
@@ -21,8 +21,12 @@ const routes: Routes = [
             { path: ':id', component: RecipeDetailComponent }
         ]
     },
-    { path: "feed", component: MainLogoComponent }
-
+    { path: "feed", component: MainLogoComponent },
+    {
+        path: "SearchByRecipeName", component: RecipesComponent, children: [
+            { path: ':id', component: RecipeDetailComponent }
+        ]
+    }
 ];
 
 @NgModule({

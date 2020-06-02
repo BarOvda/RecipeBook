@@ -17,7 +17,10 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { SearchUsersComponent } from './search-users/search-users.component';
-import { UsersDetailsComponent } from './search-users/users-details/users-details.component';
+
+import { UserItemComponent } from './search-users/user-item/user-item.component';
+import { FeedItemComponent } from './main-logo/feed-item/feed-item.component';
+
 
 
 
@@ -35,7 +38,9 @@ import { UsersDetailsComponent } from './search-users/users-details/users-detail
     RecipeItemComponent,
     RecipeDetailComponent,
     SearchUsersComponent,
-    UsersDetailsComponent,
+    UserItemComponent,
+    FeedItemComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,9 @@ export class HeaderComponent implements OnInit {
   }
 
   onSearchUser() {
-    this.router.navigate(['/search-page/' + this.usernameSearch]);
+    this.router.navigate(['/search-page/'], { queryParams: { searchUsername: this.usernameSearch } }).then(() => {
+      this.usernameSearch = '';
+    });
   }
 
 }

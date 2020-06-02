@@ -16,6 +16,7 @@ export class SearchUsersComponent implements OnInit {
   element: Element;
   page: number = 0;
   pages: number[] = [];
+  user: string;
 
   constructor(private userService: UserRedistrationService, private router: ActivatedRoute, private elementService: ElementService) { }
 
@@ -40,7 +41,12 @@ export class SearchUsersComponent implements OnInit {
     action.type = "searchUser";
     action.invokedBy["email"] = this.userService.emailName;
     action.actionAttributes["page"] = this.page;
-    action.actionAttributes["username"] = this.router.snapshot.params['username'];
+
+    this.router.queryParams.subscribe(params => {
+      this.user = params.searchUsername;
+    })
+
+    action.actionAttributes["username"] = this.user;
     action.element["elementId"] = this.elementService.element.elementId;
 
 

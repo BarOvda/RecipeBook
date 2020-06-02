@@ -55,6 +55,7 @@ export class ElementService {
   }
   public specificUser(email: string, name: string) {
     this.getElementByName(email, name).then((data: Element) => {
+      this.element = new Element();
       this.element = data[0];
       console.log(this.element);
     })

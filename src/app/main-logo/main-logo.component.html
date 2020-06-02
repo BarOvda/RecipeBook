@@ -1,67 +1,37 @@
-<div id="splash" class="splash">
+<body>
 
-  <div class="splash__brand">
-    <a title="RecipeBook" href="#"><img alt="RecipeBook" class="splash__brand__logo inline"
-        src="https://www.freelogodesign.org/file/app/client/thumb/d6819f5d-bb71-48bb-95a8-797f8c4550f3_200x200.png?1589447693566" /></a>
-
+  <div class="center">
+    <img
+      src="https://www.freelogodesign.org/file/app/client/thumb/d6819f5d-bb71-48bb-95a8-797f8c4550f3_200x200.png?1589447693566"
+      alt="logo">
   </div>
 
-  <form id="home_search" class="search-widget search-widget--wide media form-alternate" autocomplete="off"
-    data-behavior="rewrite_url" data-source="[data-behavior=search_field]" action="/us/search" accept-charset="UTF-8"
-    method="get"><input name="utf8" type="hidden" value="✓">
-    <div class="splash__search">
-      <div class="media__img-rev">
-        <input type="submit" name="commit" value="Search Recipes" class="search-widget__btn btn btn-default">
-      </div>
-
-      <div class="search-widget__field media__body">
-        <input type="text" name="q" id="splash_primary_action" class="search-widget__input form-control"
-          placeholder="Ingredient name, dish..." autocapitalize="off" data-behavior="search_field"
-          data-suggestions="/us/suggestions.json" autocomplete="off">
-        <div class="autocomplete-suggestions"
-          style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+  <form (ngSubmit)="onSearchRecipe()">
+    <div class="container">
+      <input type="text" placeholder="Enter Recipe Name ..." [(ngModel)]="this.recipeName" name="Attribute" required>
+      <div class="clearfix">
+        <button type="submit" class="SEARCH">Search</button>
       </div>
     </div>
+  </form>
 
-    <ul class="text-center md:text-left links">
-      <li class="px-1 inline-block ">
-        <a href="/us/search/cake">cake</a>
-      </li>
-      <li class="px-1 inline-block ">
-        <a data-controller="link-rewrite"
-          data-link-rewrite-params="{&quot;event&quot;:&quot;search.trending_keywords&quot;}"
-          data-action="link-rewrite#appendURLParams" href="/us/search/cookies">cookies</a>
-      </li>
-      <li class="px-1 inline-block hidden md:inline-block">
-        <a data-controller="link-rewrite"
-          data-link-rewrite-params="{&quot;event&quot;:&quot;search.trending_keywords&quot;}"
-          data-action="link-rewrite#appendURLParams" href="/us/search/pizza">pizza</a>
-      </li>
-      <li class="px-1 inline-block hidden md:inline-block">
-        <a data-controller="link-rewrite"
-          data-link-rewrite-params="{&quot;event&quot;:&quot;search.trending_keywords&quot;}"
-          data-action="link-rewrite#appendURLParams" href="/us/search/egyptian">egyptian</a>
-      </li>
-      <li class="px-1 inline-block hidden md:inline-block">
-        <a data-controller="link-rewrite"
-          data-link-rewrite-params="{&quot;event&quot;:&quot;search.trending_keywords&quot;}"
-          data-action="link-rewrite#appendURLParams" href="/us/search/rice%20cooker%20cake">rice cooker cake</a>
-      </li>
-      <li class="px-1 inline-block hidden md:inline-block">
-        <a data-controller="link-rewrite"
-          data-link-rewrite-params="{&quot;event&quot;:&quot;search.trending_keywords&quot;}"
-          data-action="link-rewrite#appendURLParams" href="/us/search/maseca">maseca</a>
-      </li>
-      <li class="px-1 text-gray-600 hidden md:inline-block">|</li>
+  <hr>
+  
 
-      <li class="px-1 inline-block">
-        <a href="/us/search_categories">categories</a>
+  <div class="row;collapse mb-2">
+    <div class="col-xs-12;collapse mb-2">
+      <div id="borderFeedItem">
+      <app-feed-item *ngFor="let feedEl of feed" [feedRecipe]="feedEl"></app-feed-item>
+    </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <ul class="nav nav-pills">
+      <li class="nav-item" *ngFor="let p of pages; let i = index">
+        <a class="nav-item" href="" (click)="setPage(i,$event)">{{i}}</a>
       </li>
     </ul>
-
-  </form>
-  <div class="text-center splash__cta">
-    <a id="splash_primary_action" class="btn btn-create-recipe btn-create-recipe--large" data-require-login="true"
-      rel="nofollow" data-method="post" href="/us/recipes"><i class="icf icf--add-circle "></i> Create Recipe</a>
   </div>
-</div>
+  
+</body>

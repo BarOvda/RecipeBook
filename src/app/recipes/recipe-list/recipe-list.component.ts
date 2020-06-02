@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Element } from '../../element'
 import { ElementService } from 'src/app/element.service';
 import { UserRedistrationService } from 'src/app/user-redistration.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Action } from '../../action';
 
 
@@ -17,7 +17,9 @@ export class RecipeListComponent implements OnInit {
   page: number = 0;
   pages: number[] = [];
 
-  constructor(private elementService: ElementService, private userService: UserRedistrationService, private router: Router) { }
+  name: string;
+
+  constructor(private elementService: ElementService, private userService: UserRedistrationService, private router: ActivatedRoute) { }
   setPage(i: number, event: Event) {
 
     event.preventDefault();
@@ -36,10 +38,26 @@ export class RecipeListComponent implements OnInit {
     this.recipes = [];
     this.pages = [];
 
-    action.type = "getAllUsersRecpies";
-    action.invokedBy["email"] = this.userService.emailName;
+    this.router.queryParams.subscribe(params => {
+      this.name = params.searchRecipe;
+    })
+
     action.actionAttributes["page"] = this.page;
     action.element["elementId"] = this.elementService.element.elementId;
+    action.invokedBy["email"] = this.userService.emailName;
+
+    if (this.name === undefined || this.name === '') {
+
+      action.type = "getAllUsersRecpies";
+
+    }
+    else {
+
+      action.type = "searchRecipe";
+      action.actionAttributes["name"] = this.name;
+
+      console.log(action)
+    }
 
     this.elementService.getRecipeByEmail(action).then((data) => {
       this.recipes = data;
@@ -47,6 +65,6 @@ export class RecipeListComponent implements OnInit {
       for (let i = 0; i < (parseInt(("" + (this.recipes.length / 10 + 1)))); i++) {
         this.pages.push(i);
       }
-    })
+    });
   }
 }
