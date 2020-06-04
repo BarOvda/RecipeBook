@@ -3,6 +3,7 @@ import { UserRedistrationService } from '../user-redistration.service';
 import { Router } from '@angular/router';
 import { Element } from '../element'
 import { ElementService } from '../element.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -12,6 +13,7 @@ import { ElementService } from '../element.service';
   styleUrls: ['./add-recipe.component.css']
 })
 export class AddRecipeComponent implements OnInit {
+  // selectedFile=null;
   recipe: Element;
   ingridient: Element;
   name: string;
@@ -37,7 +39,7 @@ export class AddRecipeComponent implements OnInit {
 
 
 
-  constructor(private userservice: UserRedistrationService, private elementService: ElementService, private router: Router) {
+  constructor(private http:HttpClient,private userservice: UserRedistrationService, private elementService: ElementService, private router: Router) {
     this.recipe = new Element();
   }
 
@@ -53,6 +55,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   onSubmitinfro() {
+    
     this.attributeRecipe.set("image", this.image);
     this.press = 1;
 
@@ -179,5 +182,9 @@ export class AddRecipeComponent implements OnInit {
       this.countToExit++;
     }
   }
+  // onFileSelected(event){
+  //   this.selectedFile = event.target.diles[0];
+
+  // }
 }
 

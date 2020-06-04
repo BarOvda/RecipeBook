@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Element } from './element'
 import { Action } from './action';
@@ -7,11 +7,14 @@ import { Action } from './action';
 @Injectable({
   providedIn: 'root'
 })
-export class ElementService {
-  element: Element;
+export class ElementService implements OnInit{
+  element: Element=new Element();
   recipeSelected = new EventEmitter<Element>();
 
   constructor(private http: HttpClient) { }
+  ngOnInit(): void {
+    
+  }
 
   public postElement(recipe: Element, email: string): Promise<any> {
     return this.http.post<Element>("http://localhost:8091/acs/elements/" + email, recipe).toPromise();
@@ -55,7 +58,7 @@ export class ElementService {
   }
   public specificUser(email: string, name: string) {
     this.getElementByName(email, name).then((data: Element) => {
-      this.element = new Element();
+    
       this.element = data[0];
       console.log(this.element);
     })

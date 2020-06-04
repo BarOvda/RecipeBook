@@ -9,16 +9,19 @@
       <p>Please fill your EMAIL.</p>
       <hr>
 
+    
       <label for="email"><b>Email:</b></label>
       <input type="text" placeholder="Enter Email" [(ngModel)]="email" name="email" required>
-
+ 
 
       <div class="clearfix">
 
         <button type="submit" class="signupbtn">Log In</button>
       </div>
+      <div *ngIf="!isValidEmailCheack()" class="error-message">Invalid Email</div>
     </div>
   </form>
+ 
 
 </body>
 

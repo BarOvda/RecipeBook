@@ -27,7 +27,7 @@ export class UserRedistrationService {
     return this.http.get<User>("http://localhost:8091/acs/users/login/" + email).toPromise();
   }
   public check(email: string): Promise<any> {
-    this.emailName = email;
+    
     return this.http.get<User>("http://localhost:8091/acs/users/login/" + email).toPromise();
   }
 

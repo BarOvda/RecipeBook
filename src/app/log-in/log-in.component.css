@@ -77,3 +77,9 @@ button:hover {
     width: 100%;
   }
 }
+.error-message {
+  background-color: #fce4e4;
+  border: 1px solid #fcc2c3;
+  float: left;
+  padding: 20px 30px;
+}

@@ -1,0 +1,19 @@
+
+
+
+div.feeddisplay{
+    display: grid;
+    grid-template-columns: 400px 400px 400px;
+    grid-gap: 10px;
+  
+  }
+  div.gridFeed{
+    display: grid;
+  
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: 400px 400px 400px;
+  
+  }
+  

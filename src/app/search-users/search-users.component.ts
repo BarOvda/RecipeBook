@@ -27,7 +27,9 @@ export class SearchUsersComponent implements OnInit {
     this.getUsersByUsername();
   }
 
-
+  // ngOnChanges():void{
+  //   this.getUsersByUsername();
+  // }
   ngOnInit(): void {
     this.getUsersByUsername();
   }

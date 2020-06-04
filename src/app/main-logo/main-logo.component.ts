@@ -15,7 +15,7 @@ export class MainLogoComponent implements OnInit {
   feed:Element[];
   page: number = 0;
   pages: number[] = [];
-
+  
   constructor(private router: Router,private userService: UserRedistrationService,private elementService:ElementService) { }
 
 
@@ -33,6 +33,8 @@ export class MainLogoComponent implements OnInit {
   }  
 
   getFeed() {
+    
+    console.log("im getting the feed!");
     var action: Action = new Action();
     this.feed = [];
     this.pages = [];
@@ -40,6 +42,7 @@ export class MainLogoComponent implements OnInit {
     action.actionAttributes["page"] = this.page;
     action.element["elementId"] = this.elementService.element.elementId;
     action.invokedBy["email"] = this.userService.emailName;
+    console.log(this.userService.emailName);
     action.type = "getFeed";
     console.log(action);
 
