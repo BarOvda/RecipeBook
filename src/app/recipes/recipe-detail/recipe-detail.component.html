@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row" style="margin: 15px;">
   <div class="col-xs-12">
-    <img [src]="this.recipe.elementAttributes['image']" alt="{{this.recipe.name}}" class="img-responsive"
-      style="max-height: 300px;">
+    <img [src]="this.recipe.elementAttributes['image']" alt="{{this.recipe.name}}"
+      style=" max-height: 300px; filter: drop-shadow(0 0 5px #000); border-radius: 8px; margin: 0 0 20px 0;">
   </div>
 </div>
 <div class="row">
@@ -12,7 +12,7 @@
 <hr>
 <div class="row">
   <div class="col-xs-7 col-sm-6 col-lg-8">
-    <h3>Ingredients</h3>
+    <h3><b>Ingredients</b></h3>
     <p *ngFor="let ing of this.ingridient">
       {{ing}}
     </p>
@@ -21,7 +21,7 @@
 <hr>
 <div class="row">
   <div class="col-xs-7 col-sm-6 col-lg-8">
-    <h3>Directions</h3>
+    <h3><b>Directions</b></h3>
     <p *ngFor="let step of this.steps">
       {{step}}
     </p>

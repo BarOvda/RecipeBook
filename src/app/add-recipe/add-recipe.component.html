@@ -11,17 +11,16 @@
 
       <label for="image"><b>Put Image URL</b></label>
       <input type="text" placeholder="Enter url" [(ngModel)]="image" name="image" required>
-      <!-- <input type="file" (change)="onFileSelected($event)"> -->
       <div class="clearfix">
 
-        <button type="submit" class="signupbtn">Submit</button>
+        <button type="submit" class="pull-right">Submit</button>
       </div>
     </div>
   </form>
 </body>
+<hr>
 
 <body>
-  <hr>
   <form (ngSubmit)="onSubmitAddIngredient()" style="border:1px solid #ccc">
     <div class="container">
       <p>Please fill Ingredient to you'r {{name}} RECIPE: </p>
@@ -36,7 +35,7 @@
 
       <div class="clearfix">
 
-        <button type="submit" [disabled]="!press" class="signupbtn">Add Ingredient</button>
+        <button type="submit" [disabled]="!press" class="pull-right">Add Ingredient</button>
       </div>
     </div>
   </form>
@@ -46,13 +45,13 @@
 <body>
   <form (ngSubmit)="onSubmitAddAttribute()" style="border:1px solid #ccc">
     <div class="container">
-      <p>Please fill step's to you'r {{name}} RECIPE: </p>
+      <p>Please fill steps to you'r {{name}} RECIPE: </p>
       <hr>
       <label for="Attribute"><b>Step number {{count}}:</b></label>
       <input type="text" placeholder="Enter one step" onfocus="step = ''" [(ngModel)]="step" name="Attribute" required>
 
       <div class="clearfix">
-        <button type="submit" [disabled]="!press" class="signupbtn">Add step </button>
+        <button type="submit" [disabled]="!press" class="pull-right">Add step </button>
       </div>
     </div>
   </form>
@@ -62,8 +61,8 @@
 <body>
   <form (ngSubmit)="onSubmitFinish()" style="border:1px solid #ccc">
     <div class="container">
-      <p>Please press FINISH if you write all detiles about you'r {{name}} RECIPE: </p>
-      <button type="submit" [disabled]="!press" class="signupbtn">FINISH</button>
+      <p><b>Please press FINISH if you write all detiles about you'r {{name}} RECIPE: </b></p>
+      <button type="submit" [disabled]="!press" class="pull-right">FINISH</button>
     </div>
   </form>
 </body>

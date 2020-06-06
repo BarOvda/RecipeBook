@@ -19,7 +19,6 @@ export class UserRedistrationService {
   constructor(private http: HttpClient) { }
 
   public save(user: User): Promise<any> {
-    this.emailName = user.email;
     return this.http.post<User>("http://localhost:8091/acs/users", user).toPromise();
   }
 

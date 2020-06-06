@@ -26,7 +26,8 @@ const routes: Routes = [
         path: "SearchByRecipeName", component: RecipesComponent, children: [
             { path: ':id', component: RecipeDetailComponent }
         ]
-    }
+    },
+    { path: ':id', component: RecipeDetailComponent }
 ];
 
 @NgModule({

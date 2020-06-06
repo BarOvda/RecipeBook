@@ -39,7 +39,7 @@ export class AddRecipeComponent implements OnInit {
 
 
 
-  constructor(private http:HttpClient,private userservice: UserRedistrationService, private elementService: ElementService, private router: Router) {
+  constructor(private http: HttpClient, private userservice: UserRedistrationService, private elementService: ElementService, private router: Router) {
     this.recipe = new Element();
   }
 
@@ -55,7 +55,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   onSubmitinfro() {
-    
+
     this.attributeRecipe.set("image", this.image);
     this.press = 1;
 
@@ -175,16 +175,12 @@ export class AddRecipeComponent implements OnInit {
 
   exit() {
     if (this.countToExit == this.elementNumber) {
-      this.router.navigate(['']);
+      this.router.navigate(['/feed']);
 
     }
     else {
       this.countToExit++;
     }
   }
-  // onFileSelected(event){
-  //   this.selectedFile = event.target.diles[0];
-
-  // }
 }
 

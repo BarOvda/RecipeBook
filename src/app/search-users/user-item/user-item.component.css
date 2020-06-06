@@ -1,29 +1,40 @@
-
-
 #borderFeedItem {
-  border: 3px solid rgba(28,110,164,0.22);
+  border: 3px solid rgba(28, 110, 164, 0.22);
   border-radius: 35px;
-  }
+}
 
 
-  body {margin:25px;}
+body {
+  margin: 25px;
+}
 
 div.polaroid {
 
-width:70%;
-background-color: white;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-margin-bottom:70px;
+  width: 70%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 70px;
 }
 
 div.container {
-/* text-align: center; */
-padding: 10px 20px;   
+  /* text-align: center; */
+  padding: 10px 20px;
 }
 
 
-div.feeddisplay{
+div.feeddisplay {
   grid-template-columns: 700px 700px 700px;
   grid-gap: 10px;
 
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 0 10px 0px;
+  margin: 10px 0 10px 0px;
+  border: none;
+  cursor: pointer;
+  width: 21%;
+  opacity: 1;
 }

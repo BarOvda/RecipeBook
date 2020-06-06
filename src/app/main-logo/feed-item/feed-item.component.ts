@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./feed-item.component.css']
 })
 export class FeedItemComponent implements OnInit {
-  @Input() feedRecipe:Element;
-  owner:User;
+  @Input() feedRecipe: Element;
+  owner: User;
 
-  constructor(private userService:UserRedistrationService,private router: Router) { }
+  constructor(private userService: UserRedistrationService, private router: Router) { }
 
   ngOnInit(): void {
     this.owner = new User();
@@ -21,7 +21,8 @@ export class FeedItemComponent implements OnInit {
       this.owner = data;
     });
   }
-  goToRecipe(){
-    this.router.navigate(['/My-Recipe/'+""+this.feedRecipe.elementId]) ;
-}
+
+  goToRecipe() {
+    this.router.navigate([this.feedRecipe.elementId]);
+  }
 }
