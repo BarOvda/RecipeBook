@@ -15,7 +15,7 @@ export class RegistrationComponent implements OnInit {
 
   user: User;
   userElement: Element;
-  isValidEmail:Boolean;
+  isValidEmail: Boolean;
 
   constructor(private service: UserRedistrationService, private router: Router, private elementService: ElementService) {
     this.user = new User();
@@ -29,34 +29,29 @@ export class RegistrationComponent implements OnInit {
   onSubmitRegi() {
 
 
-   this.isValidEmail=true;
+    this.isValidEmail = true;
     this.service.save(this.user)
-    .catch((err: HttpErrorResponse) => {
-      // simple logging, but you can do a lot more, see below
-      
-      console.log('An error occurred:', err.error);
-      this.isValidEmail=false;
-      
-    }).
+      .catch((err: HttpErrorResponse) => {
 
-      then((result:User) => {
-        if(this.isValidEmail){
+        console.log('An error occurred:', err.error);
+        this.isValidEmail = false;
+
+      }).
+
+      then((result: User) => {
+        if (this.isValidEmail) {
           this.service.emailName = result.email;
 
-        this.userElement.type = "user"
-        this.userElement.name = this.user.email;
-        this.userElement.createdBy["email"] = this.user.email;
-        this.userElement.active = true;
+          this.userElement.type = "user"
+          this.userElement.name = this.user.email;
+          this.userElement.createdBy["email"] = this.user.email;
+          this.userElement.active = true;
 
-        this.elementService.createUserElement(this.userElement, this.user.email);
-        this.gotoUserList();
+          this.elementService.createUserElement(this.userElement, this.user.email);
         }
       })
   }
 
-  gotoUserList() {
-    this.router.navigate(['/feed']);
-  }
-  isValidEmailCheack(){return this.isValidEmail;}
+  isValidEmailCheack() { return this.isValidEmail; }
 
 }

@@ -26,7 +26,6 @@ export class RecipeDetailComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.id = +params['id'];
-
           this.steps = [];
           this.ingridient = [];
           this.count = 1;

@@ -2,18 +2,19 @@ import { Injectable, EventEmitter, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Element } from './element'
 import { Action } from './action';
+import { Router } from '@angular/router';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ElementService implements OnInit{
-  element: Element=new Element();
+export class ElementService implements OnInit {
+  element: Element = new Element();
   recipeSelected = new EventEmitter<Element>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
   ngOnInit(): void {
-    
+
   }
 
   public postElement(recipe: Element, email: string): Promise<any> {
@@ -53,16 +54,22 @@ export class ElementService implements OnInit{
     this.postElement(userElement, email).then(() => {
       this.getElementByType(email, userElement.type).then((data: Element) => {
         this.element = data[0];
+      }).then(() => {
+        this.gotoUserList();
       })
     })
   }
   public specificUser(email: string, name: string) {
     this.getElementByName(email, name).then((data: Element) => {
-    
       this.element = data[0];
-      console.log(this.element);
+    }).then(() => {
+      this.gotoUserList();
     })
 
+  }
+
+  gotoUserList() {
+    this.router.navigate(['/feed']);
   }
 }
 

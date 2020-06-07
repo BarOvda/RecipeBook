@@ -27,9 +27,6 @@ export class SearchUsersComponent implements OnInit {
     this.getUsersByUsername();
   }
 
-  // ngOnChanges():void{
-  //   this.getUsersByUsername();
-  // }
   ngOnInit(): void {
     this.getUsersByUsername();
   }
@@ -59,7 +56,6 @@ export class SearchUsersComponent implements OnInit {
         this.pages.push(i);
       }
 
-      console.log(this.pages);
     })
   }
 }

@@ -12,29 +12,27 @@ import { ElementService } from '../element.service';
 })
 export class MainLogoComponent implements OnInit {
   recipeName: string;
-  feed:Element[];
+  feed: Element[];
   page: number = 0;
   pages: number[] = [];
-  
-  constructor(private router: Router,private userService: UserRedistrationService,private elementService:ElementService) { }
+
+  constructor(private router: Router, private userService: UserRedistrationService, private elementService: ElementService) { }
 
 
   ngOnInit(): void {
     this.recipeName = '';
-    console.log("feed!");
     this.getFeed();
 
-  } 
+  }
 
   onSearchRecipe() {
     this.router.navigate(['/SearchByRecipeName/'], { queryParams: { searchRecipe: this.recipeName } }).then(() => {
       this.recipeName = '';
     });
-  }  
+  }
 
   getFeed() {
-    
-    console.log("im getting the feed!");
+
     var action: Action = new Action();
     this.feed = [];
     this.pages = [];
@@ -42,9 +40,7 @@ export class MainLogoComponent implements OnInit {
     action.actionAttributes["page"] = this.page;
     action.element["elementId"] = this.elementService.element.elementId;
     action.invokedBy["email"] = this.userService.emailName;
-    console.log(this.userService.emailName);
     action.type = "getFeed";
-    console.log(action);
 
     this.userService.getFeed(action).then((data) => {
       this.feed = data;
@@ -62,8 +58,4 @@ export class MainLogoComponent implements OnInit {
     this.getFeed();
 
   }
-
-
-
-
 }

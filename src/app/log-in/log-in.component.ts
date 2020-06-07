@@ -14,7 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LogInComponent implements OnInit {
 
   email: string;
-  isValidEmail:Boolean;
+  isValidEmail: Boolean;
   constructor(private service: UserRedistrationService, private router: Router, private elementService: ElementService) { }
 
   ngOnInit(): void {
@@ -22,36 +22,28 @@ export class LogInComponent implements OnInit {
   }
 
   onSubmitLogIn() {
-    this.isValidEmail=true;
+    this.isValidEmail = true;
 
-    this.service.check(this.email) .catch((err: HttpErrorResponse) => {
-      // simple logging, but you can do a lot more, see below
-      
+    this.service.check(this.email).catch((err: HttpErrorResponse) => {
+
       console.log('An error occurred:', err.error);
-      this.isValidEmail=false;
-      
+      this.isValidEmail = false;
+
     }).then((result: User) => {
-      console.log(this.isValidEmail);
-      if(this.isValidEmail){
+
+      if (this.isValidEmail) {
         this.service.emailName = result.email;
-      console.log(result);
-     
-      console.log(result);
-      this.elementService.specificUser(this.service.emailName, result.email);
-      
-      this.gotoUserList();
+        this.elementService.specificUser(this.service.emailName, result.email);
+
       }
     });
-
-
-    
   }
 
   gotoUserList() {
     this.router.navigate(['/feed']);
   }
 
-isValidEmailCheack(){return this.isValidEmail}
+  isValidEmailCheack() { return this.isValidEmail }
 
 
 }

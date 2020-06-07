@@ -56,7 +56,6 @@ export class RecipeListComponent implements OnInit {
       action.type = "searchRecipe";
       action.actionAttributes["name"] = this.name;
 
-      console.log(action)
     }
 
     this.elementService.getRecipeByEmail(action).then((data) => {

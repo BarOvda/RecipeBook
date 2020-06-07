@@ -36,9 +36,6 @@ export class AddRecipeComponent implements OnInit {
   countToExit: number;
   elementNumber: number;
 
-
-
-
   constructor(private http: HttpClient, private userservice: UserRedistrationService, private elementService: ElementService, private router: Router) {
     this.recipe = new Element();
   }
@@ -167,7 +164,6 @@ export class AddRecipeComponent implements OnInit {
   }
 
   connectBetweenElement(elementId: string) {
-    console.log(elementId);
     this.childId = {};
     this.childId["id"] = elementId;
     this.elementService.conectBetweenElement(this.userservice.emailName, this.recipeElement[0].elementId, this.childId);

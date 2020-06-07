@@ -12,25 +12,24 @@ import { Action } from 'src/app/action';
 export class UserItemComponent implements OnInit {
   @Input() user: User;
 
-  constructor(private userService: UserRedistrationService,  private elementService: ElementService) { }
+  constructor(private userService: UserRedistrationService, private elementService: ElementService) { }
 
   ngOnInit(): void {
   }
 
-  Follow(){
+  Follow() {
 
     var action: Action = new Action();
 
     action.type = "follow";
     action.invokedBy["email"] = this.userService.emailName;
     action.actionAttributes["followed"] = this.user.email;
-    
+
     action.element["elementId"] = this.elementService.element.elementId;
 
-    console.log("befor");
 
     this.userService.follow(action).then((data) => {
-      console.log("after");  
+
     })
 
 
