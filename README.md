@@ -1,5 +1,8 @@
+My recipes:
 ![](/screenshots/screenshot1.png)
+Search results:
 ![](/screenshots/screenshot2.png)
+Feed:
 ![](/screenshots/screenshot3.png)
 
 
