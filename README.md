@@ -4,6 +4,8 @@ A social platform for sharing and searching different recipes from different pla
 
 ---
 
+Full-stack project.
+
 Server - Spring boot framwork with java.
 
 Client - Angular 9.
